@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import './App.css'
-import BackgroundWrapper from './components/background/BackgroundWrapper'
+import BackgroundWrapper from './components/layout/BackgroundWrapper'
 import Logo from './features/logo/Logo'
 import machapuchhre from './assets/themes/machhapuchhre.jpg'
 import QuickTheme from './features/quick-theme/QuickTheme'
@@ -9,11 +8,10 @@ import Ambience from './features/ambience/Ambience'
 import Timer from './features/timer/Timer'
 
 function App() {
-  const [backgroundImgUrl] = useState(machapuchhre);
   
   return (
     <>
-      <BackgroundWrapper imgUrl={backgroundImgUrl}>
+      <BackgroundWrapper defaultImgUrl={machapuchhre}>
         <div className="relative h-full w-full">
           <Logo />
           <QuickTheme />
