@@ -44,7 +44,7 @@ function QuickTheme() {
                     </div>
                 )}
                 
-                <div className="overflow-scroll">
+                <div className="overflow-scroll pt-1 pl-2">
                     {themes.map((theme: Theme)=> (
                         <div 
                             key={theme.id}
@@ -52,7 +52,7 @@ function QuickTheme() {
                                 relative cursor-pointer rounded-lg overflow-hidden w-[90%]
                                 transition-all duration-200
                                 ${theme.id === selectedThemeId 
-                                ? 'border-2 border-[#ffd089] scale-106 transition left-2 z-50' 
+                                ? 'border-2 border-[#ffd089] scale-106 transition z-50'
                                 : 'border border-gray-600 hover:scale-105'
                                 }
                             `}
