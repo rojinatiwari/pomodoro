@@ -76,7 +76,13 @@ export const themesApi = createApi({
             }
         }),
         getThemeById: builder.query<Theme, string>({
-            query: (id)=> `/themes/${id}`,
+            // query: (id)=> `/themes/${id}`,
+            // no backend, so just using the mock datas
+            queryFn: async ()=> { // async (id)=> ...
+                return {
+                    data: {id: '1', name: 'a-house-theif', backgroundUrl: aHouseTheif},     
+                }
+            }
         }),
     }),
 });
