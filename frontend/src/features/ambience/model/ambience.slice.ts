@@ -24,7 +24,7 @@ export interface AmbienceState {
     
     // for animations
     animations: AmbienceAnimation[];
-    animationEnabled: Record<string, boolean> | null;
+    animationEnabled: Record<string, boolean>;
     animationPlaying: Record<string, boolean>;
 }
 
@@ -94,16 +94,37 @@ const ambienceSlice = createSlice({
         },
         
         // for animation
-        
+        toggleAnimation: (state, action: PayloadAction<string>) => {
+            const id = action.payload;
+            state.animationEnabled[id] = !state.animationEnabled[id];
+        },
+        setAnimation: (state, action: PayloadAction<{id: string, enabled: boolean}>) => {
+            const { id, enabled } = action.payload;
+            state.animationEnabled[id] = enabled;
+        },
+        setAnimationPlaying: (state, action: PayloadAction<{ id: string, playing: boolean }>) => {
+            const { id, playing } = action.payload;
+            state.animationPlaying[id] = playing;
+        },
+        stopAllAnimations: (state) => {
+            Object.keys(state.animationPlaying).forEach(id=> (state.animationPlaying[id]=false));
+        }
         
     }
 });
 
 export const {
+    setSounds,
     setVolume,
     togglePlay,
     setPlaying,
-    stopAll
+    stopAll,
+    toggleAllMute,
+    
+    toggleAnimation,
+    setAnimation,
+    setAnimationPlaying,
+    stopAllAnimations,
 } = ambienceSlice.actions;
 
 export default ambienceSlice.reducer;
