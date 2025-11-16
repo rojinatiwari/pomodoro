@@ -52,9 +52,10 @@ const ambienceSlice = createSlice({
     reducers: {
         // for sound
         setSounds: (state, action: PayloadAction<AmbienceSound[]>) => {
+            state.sounds = action.payload;
             action.payload.forEach(s => {
                 if(state.volumes[s.id]===undefined) {
-                    state.volumes[s.id] = s.defaultVolume ?? 50;
+                    state.volumes[s.id] = s.defaultVolume ?? 37;
                 }
                 if(state.playing[s.id]===undefined) {
                     state.playing[s.id] = false;
@@ -73,10 +74,8 @@ const ambienceSlice = createSlice({
             const { id, playing } = action.payload;
             state.playing[id] = playing;
         },
-        stopAll: (state, action: PayloadAction<AmbienceSound[]>) => {
-            action.payload.forEach(s=> {
-                state.playing[s.id] = false;
-            })
+        stopAll: (state) => {
+            Object.keys(state.playing).forEach(id=>(state.playing[id]=false))
         },
         toggleAllMute: (state) => {
             if(!state.isAllMute) {
@@ -87,9 +86,9 @@ const ambienceSlice = createSlice({
             else {
                 if(state.prevVolumes) {
                     state.prevVolumes = {...state.volumes, ...state.prevVolumes};
-                    state.prevVolumes = null;
-                    state.isAllMute = false;
                 }
+                state.prevVolumes = null;
+                    state.isAllMute = false;
             }
         },
         
