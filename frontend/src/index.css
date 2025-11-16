@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+input[type="range"]::-webkit-slider-thumb {
+  @apply bg-[#FFD089] w-4 h-4 rounded-full cursor-pointer outline-none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply bg-[#FFD089] w-4 h-4 rounded-full cursor-pointer outline-none;
+}
+
+input[type="range"]::-ms-thumb {
+  @apply bg-[#FFD089] w-4 h-4 rounded-full cursor-pointer outline-none;
+}

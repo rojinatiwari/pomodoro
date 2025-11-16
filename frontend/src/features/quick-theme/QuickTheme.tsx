@@ -24,6 +24,7 @@ function QuickTheme() {
             <motion.div
                 initial={{x: 320, opacity: 0}}
                 animate={{x: isGalleryVisible? 0:320, opacity: 1}}
+                exit={{x: 320, opacity: 0}}
                 transition={{stiffness: 80, type: "spring", ease: "easeInOut", duration: 0.4}}
                 className="absolute top-0 right-0 h-full w-80 bg-black/20 backdrop-blur-md p-4 flex flex-col gap-4 shadow-xl z-50"
             >
@@ -58,7 +59,7 @@ function QuickTheme() {
                             `}
                             onClick={()=>handleThemeSelect(theme.id, theme.backgroundUrl)}
                         >
-                            <img src={theme.backgroundUrl} alt={theme.name}  className="h-24 w-full object-cover"/>
+                            <img src={theme.backgroundUrl} alt={theme.name} loading="lazy" className="h-24 w-full object-cover"/>
                         </div>
                     ))}
                 </div>

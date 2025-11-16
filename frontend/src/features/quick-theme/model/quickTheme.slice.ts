@@ -20,7 +20,7 @@ const initialState: QuickThemeState = {
 };
 
 const quickThemeSlice = createSlice({
-    name: 'quickThemek',
+    name: 'quickTheme',
     initialState,
     reducers: {
         setSelectedTheme: (state, action: PayloadAction<{id: string, backgroundUrl: string}>) => {
