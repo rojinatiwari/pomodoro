@@ -1,10 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { AmbienceSound } from '../model/ambience.slice';
 
-import rain from '../../../assets/icons/ambience/rain.svg';
-import bird from '../../../assets/icons/ambience/bird.svg';
-import campfire from '../../../assets/icons/ambience/campfire.svg';
-import waves from '../../../assets/icons/ambience/waves.svg'
+import rainImg from '../../../assets/icons/ambience/rain.svg';
+import birdImg from '../../../assets/icons/ambience/bird.svg';
+import campfireImg from '../../../assets/icons/ambience/campfire.svg';
+import wavesImg from '../../../assets/icons/ambience/waves.svg';
+
+import rainSound from '../../../assets/audios/rain.mp3';
+import birdSound from '../../../assets/audios/bird.mp3';
+import campfireSound from '../../../assets/audios/campfire.mp3';
+import waveSound from '../../../assets/audios/wave.mp3';
 
 
 export const ambienceApi = createApi({
@@ -20,32 +25,32 @@ export const ambienceApi = createApi({
                     {
                             id: "1",
                             name: "rain",
-                            audioUrl: rain,
-                            imageKey: "rain",
+                            audioUrl: rainSound,
+                            imageKey: rainImg,
                             defaultVolume: 33,
-                            categoy: "sound",          
+                            categoy: "sound",
                     },
                     {
                             id: "2",
                             name: "bird",
-                            audioUrl: bird,
-                            imageKey: "bird",
+                            audioUrl: birdSound,
+                            imageKey: birdImg,
                             defaultVolume: 33,
                             categoy: "sound",
                     },
                     {
                             id: "3",
                             name: "campfire",
-                            audioUrl: campfire,
-                            imageKey: "campfire",
+                            audioUrl: campfireSound,
+                            imageKey: campfireImg,
                             defaultVolume: 33,
                             categoy: "sound",
                     },
                     {
                             id: "4",
                             name: "waves",
-                            audioUrl: waves,
-                            imageKey: "waves",
+                            audioUrl: waveSound,
+                            imageKey: wavesImg,
                             defaultVolume: 33,
                             categoy: "sound",
                     },
