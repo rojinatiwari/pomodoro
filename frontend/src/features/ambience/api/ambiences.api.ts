@@ -1,10 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { AmbienceSound } from '../model/ambience.slice';
+import { type AmbienceAnimation, type AmbienceSound } from '../model/ambience.slice';
 
 import rainImg from '../../../assets/icons/ambience/rain.svg';
 import birdImg from '../../../assets/icons/ambience/bird.svg';
 import campfireImg from '../../../assets/icons/ambience/campfire.svg';
 import wavesImg from '../../../assets/icons/ambience/waves.svg';
+
+import rainDropIcon from '../../../assets/icons/ambience/rain-drop.svg';
+import snowfallIcon from '../../../assets/icons/ambience/snowfall.svg';
 
 import rainSound from '../../../assets/audios/rain.mp3';
 import birdSound from '../../../assets/audios/bird.mp3';
@@ -58,8 +61,16 @@ export const ambienceApi = createApi({
                 };
             }
         }),
-        
+        getAnimations: builder.query<AmbienceAnimation[], void>({
+            queryFn: async () => {
+                const data: AmbienceAnimation[] = [
+                    {id: 'rain-drop', name: 'Rain Drop', imageKey: rainDropIcon},
+                    {id: 'snowfall', name: 'Snowfall', imageKey: snowfallIcon},
+                ] as any;
+                return {data};
+            },
+        }),     
     }),
 })
 
-export const { useGetAudiosQuery } = ambienceApi;
+export const { useGetAudiosQuery, useGetAnimationsQuery } = ambienceApi;
