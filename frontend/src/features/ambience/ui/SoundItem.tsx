@@ -7,7 +7,7 @@ interface Props {
     sound: AmbienceSound;
 }
 
-function AmbienceItem({ sound }: Props) {
+function SoundItem({ sound }: Props) {
     const dispatch = useAppDispatch();
     const volume = useAppSelector((s) => s.ambience.volumes[sound.id]?? sound.defaultVolume?? 37);
     const playing = useAppSelector((s)=> !!s.ambience.playing[sound.id]);
@@ -65,4 +65,4 @@ function AmbienceItem({ sound }: Props) {
     )
 }
 
-export default AmbienceItem;
+export default SoundItem;

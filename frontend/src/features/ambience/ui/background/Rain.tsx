@@ -39,7 +39,7 @@ const Rain: React.FC = () => {
     }
 
     let animationFrameId: number;
-    let wind = 1.2;
+    const wind = 1.2;
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);

@@ -4,14 +4,15 @@ export interface AmbienceSound {
     id: string;
     name: string;
     audioUrl: string;
-    imageKey: string;
-    defaultVolume: number;
+    imageKey?: string;
+    defaultVolume?: number;
     categoy?: string;
 }
 
 export interface AmbienceAnimation {
     id: string;
     name: string;
+    imageKey?: string;
 }
 
 export interface AmbienceState {
@@ -88,7 +89,7 @@ const ambienceSlice = createSlice({
                     state.prevVolumes = {...state.volumes, ...state.prevVolumes};
                 }
                 state.prevVolumes = null;
-                    state.isAllMute = false;
+                state.isAllMute = false;
             }
         },
         
@@ -97,9 +98,12 @@ const ambienceSlice = createSlice({
             const id = action.payload;
             state.animationEnabled[id] = !state.animationEnabled[id];
         },
-        setAnimation: (state, action: PayloadAction<{id: string, enabled: boolean}>) => {
-            const { id, enabled } = action.payload;
-            state.animationEnabled[id] = enabled;
+        setAnimations: (state, action: PayloadAction<AmbienceAnimation[]>) => {
+            state.animations=action.payload;
+            action.payload.forEach((a)=>{
+                if(state.animationEnabled[a.id]===undefined) state.animationEnabled[a.id]=false;
+                if(state.animationPlaying[a.id]===undefined) state.animationPlaying[a.id]=false;
+            });
         },
         setAnimationPlaying: (state, action: PayloadAction<{ id: string, playing: boolean }>) => {
             const { id, playing } = action.payload;
@@ -108,7 +112,6 @@ const ambienceSlice = createSlice({
         stopAllAnimations: (state) => {
             Object.keys(state.animationPlaying).forEach(id=> (state.animationPlaying[id]=false));
         }
-        
     }
 });
 
@@ -121,7 +124,7 @@ export const {
     toggleAllMute,
     
     toggleAnimation,
-    setAnimation,
+    setAnimations,
     setAnimationPlaying,
     stopAllAnimations,
 } = ambienceSlice.actions;
